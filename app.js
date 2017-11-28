@@ -262,5 +262,10 @@ app.get('/logout', function(req, res){
   });
 });
 
-app.listen(3000);
+app.get('/health', (req, res) => {
+  res.send('healthy\n');
+});
 
+let port = 3000;
+app.listen(port);
+console.log('server listening on ', port);

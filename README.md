@@ -1,4 +1,4 @@
-#Azure Active Directory OIDC Web Sample
+# Azure Active Directory OIDC Web Sample
 
 This Node.js app will give you with a quick and easy way to set up a Web application in node.js with Express usind OpenID Connect. The sample server included in the download are designed to run on any platform.
 
@@ -14,6 +14,7 @@ Getting started with the sample is easy. It is configured to run out of the box 
 To use this sample you will need a Windows Azure Active Directory Tenant. If you're not sure what a tenant is or how you would get one, read [What is an Azure AD tenant](http://technet.microsoft.com/library/jj573650.aspx)? or [Sign up for Azure as an organization](http://azure.microsoft.com/en-us/documentation/articles/sign-up-organization/). These docs should get you started on your way to using Windows Azure AD.
 
 ### Step 2: Download node.js for your platform
+
 To successfully use this sample, you need a working installation of Node.js.
 
 ### Step 3: Download the Sample application and modules
@@ -27,7 +28,13 @@ From your shell or command line:
 
 ### Step 4: Configure your server
 
-* Provide the parameters in `exports.creds` in config.js as instructed.
+* Provide the parameters in `exports.creds` in config.js as instructed.  The key three parameters are defined as environment variables in a file named `hidden.env`.
+
+```
+CLIENT_ID=xyz
+CLIENT_SECRET=xyz
+REDIRECT_URL=http://azure-ad-authn-example.dev.services.ec2.dmtio.net/auth/openid/return
+```
 
 * Update `exports.destroySessionUrl` in config.js, if you want to use a different `post_logout_redirect_uri`.
 
@@ -60,6 +67,28 @@ $ node app.js | bunyan
 ### You're done!
 
 You will have a server successfully running on `http://localhost:3000`.
+
+
+### Harbor
+
+To run in Harbor:
+
+Provision shipment infrastructure
+```
+terraform apply
+```
+
+Build the image and push it to a registry
+```
+docker-compose build
+docker-compose push
+```
+
+Deploy the image and environment variables to harbor
+```
+harbor-compose up
+```
+
 
 ### Acknowledgements
 

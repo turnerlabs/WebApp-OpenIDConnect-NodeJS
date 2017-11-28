@@ -1,0 +1,11 @@
+version: "2"
+services:
+  azure-ad-authn-example:
+    build: .
+    image: quay.io/turner/azure-ad-authn-example:0.1.0
+    ports:
+    - 80:3000
+    environment:
+      HEALTHCHECK: /health
+    env_file:
+    - hidden.env
